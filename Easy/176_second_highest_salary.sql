@@ -6,6 +6,6 @@ Write a SQL query to get the second highest salary from the Employee table.
 
 Solution:
 
-SELECT MAX(Salary) AS SecondHighestSalary 
-FROM Employee  
-WHERE Salary < (SELECT MAX(Salary) FROM Employee)
+SELECT IFNULL(
+    (SELECT MAX(SALARY) FROM EMPLOYEE WHERE SALARY < (SELECT MAX(SALARY) FROM Employee)),null)
+AS SecondHighestSalary;
