@@ -3,5 +3,8 @@ Write a SQL query that reports the device that is first logged in for each playe
 
 SELECT player_id, device_id
 FROM Activity
-GROUP BY player_id
-HAVING MIN(event_date);
+WHERE (player_id, event_date) IN ( 
+    
+    SELECT player_id, MIN(event_date)
+    FROM Activity
+    GROUP BY player_id)
